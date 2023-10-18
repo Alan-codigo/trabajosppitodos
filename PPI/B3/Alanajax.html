@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script>
+           
+            var jrem=0;
+            var jkl;
+            function validarCampos(){
+                var correo= $('#correo').val();
+                var nom= $('#Nombre').val();
+                var ape= $('#Apellidos').val();
+                var pass= $('#Pasword').val();
+                var rol= $('#rol').val();
+               
+                if((correo&&nom&&ape&&pass!="")&&(rol!=0)){
+                    $.ajax({
+                        url:    'agrega.php',
+                        type:  'post',
+                        dataType: 'text',
+                        data:   'correo='+correo +'&Nombre='+nom+'&Pasword='+pass+'&rol='+rol,
+                        success: function(res){
+                            if(res==1){
+                                jrem=correo;
+                                $('#valicorr').html('El correo '+correo +' ya existe');
+                                setTimeout("$('#valicorr').html(' ')",5000);
+                                
+                                }
+                                
+                                else{
+                                $('#valicorr').html('Disponible '+correo);
+                            }
+                            //setTimeout("$('#mensaje').html('')",5000);
+                        },error:function(){
+                            alert('Error archivo no encontrado...');
+                        }
+                    });
+                }else{
+                    $('#mensaje').html('Faltan campos por llenar');
+                    setTimeout("$('#mensaje').html(' ')",5000);
+                }
+            }
+
+            function fuerafocus(){
+                if(jrem!=0){
+                    
+                jkl=('El correo '+jrem+' ya existe ');
+                $('#valicorr').html(jkl);
+                setTimeout("$('#valicorr').html(' ')",5000);
+                }
+                
+                
+
+            }
+
+            
+        </script>
+        <link rel="stylesheet" href="Estilo.css">
+    </head>
+    <body>
+        <div class="formulario" >
+            <h1>Alta Empleados</h1>
+            <form name="form1" action="agrega.php" method="POST">
+                
+                <br>
+
+            <input class="items" type="text" name="Nombre" id="Nombre" placeholder="Nombre"><br><br>
+            <input class="items" type="text" name="Apellidos" id="Apellidos" placeholder="Apellidos"><br><br>
+            <input class="items" onfocus="dentrofocus()" onblur="fuerafocus()" type="text" id="correo" name="correo" placeholder="Correo"><br><br>
+            <input class="items" type="text" name="Password" id="Pasword" placeholder="Password"><br><br>
+            <select  class="items" id="rol"  name="Rol" id="rol">
+                <option value="0">Selecciona</option>
+                <option value="1">Gerente</option>
+                <option value="2">Ejecutivo</option>
+            </select><br>
+        </form>
+        <a class="items" href="javascript:void(0);" onclick="validarCampos()">Ejecutar Ajax</a>
+        <br>
+        <a class="items" href="listado.php">Regresar al listado</a>
+        <br>    
+        <a class="items" href="agrega.php">Salvar</a>
+        </div>
+        <div  id="valicorr"></div>
+        <div id="mensaje"></div>
+    </body>
+    
+    
+    
+</html>
+
+

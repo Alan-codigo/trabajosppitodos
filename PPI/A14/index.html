@@ -1,0 +1,77 @@
+<html>
+
+ <head>
+  <title>Formulario php</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+ </head>
+
+ <body>
+	<form name="forma01" action="recibe.php" method="POST" onsubmit="return recibe()">
+		<label>
+			Nombre:
+			<input id="campo1" type="text" name="nombre" placeholder="Escribe tu nombre" required>
+		</label>
+		
+		<br>
+		<label>Correo:</label>
+		<input type="email" name="correo" value="@udg.mx">
+		<br>
+		<label for="sexo">Genero:</label>
+		<input type="radio" name="sexo" value="F">Femenino
+		<input type="radio" name="sexo" value="M">Masculino
+		<br>
+		<input type="checkbox" name="boletin" value="1" checked>
+		<label for="boletin">Recibir Boletín</label>
+		<br>
+		<label for="comentario">Comentario:</label><br>
+		<textarea name="comentario" cols="30" rows="5"></textarea>
+		<br>
+		<label for="carrera">Carrera:</label>
+		<select name="carrera">
+			<option value="0" selected>Selecciona</option>
+			<option value="1">Ing. Informática</option>
+			<option value="2">Ing. Computación</option>			
+		</select>
+		<br>
+		<label for="pasw">Contraseña:</label>
+		<input type="password" name="pasw">
+		<br>
+		<label for="promedio">Promedio:</label>
+		<input type="number" name="promedio" min="60" max="100">
+		<br>
+		<label for="fecha">Fecha nacimiento:</label>
+		<input type="date" name="fecha">
+		
+		<br>
+		<input type="submit" value="Enviar con input">
+	</form>
+
+    <script>
+        function recibe(){
+
+    
+    var nombre = document.forma01.nombre.value;
+    var correo = document.forma01.correo.value;
+    var sexo = document.forma01.sexo.value;
+    var boletin = document.forma01.boletin.value;
+    var comentario = document.forma01.comentario.value;        
+    var carrera = document.forma01.carrera.value;
+    var pasw = document.forma01.pasw.value;
+    var promedio = document.forma01.promedio.value;
+    var fecha = document.forma01.fecha.value;
+
+    if (nombre == "" || correo == "" || sexo == "" || comentario == "" || carrera == 0 || pasw == "" || promedio == "" || fecha == "") {
+        alert("Por favor, llene todos los campos");
+        return false;
+    } else {
+
+        return true;
+    }
+    
+    }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+ </body>
+
+</html>
